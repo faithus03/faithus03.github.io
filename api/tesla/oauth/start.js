@@ -1,7 +1,8 @@
 export default function handler(req, res) {
+  const redirectURI = 'https://tesla-relay-api.vercel.app/api/tesla/oauth/callback';
   const params = new URLSearchParams({
     client_id: process.env.TESLA_CLIENT_ID,
-    redirect_uri: process.env.TESLA_REDIRECT_URI,
+    redirect_uri: redirectURI,
     response_type: 'code',
     scope: 'openid offline_access vehicle_location',
     state: crypto.randomUUID()
