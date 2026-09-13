@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'method_not_allowed' });
-  const token = process.env.TESLA_ACCESS_TOKEN;
+  const token = req.headers.authorization?.replace(/^Bearer\s+/i, '') || process.env.TESLA_ACCESS_TOKEN;
   const vin = process.env.TESLA_VIN;
   if (!token || !vin) return res.status(503).json({ error: 'Tesla API is not configured' });
   try {
