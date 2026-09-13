@@ -4,7 +4,7 @@ export default function handler(req, res) {
     client_id: process.env.TESLA_CLIENT_ID,
     redirect_uri: redirectURI,
     response_type: 'code',
-    scope: 'openid offline_access vehicle_location',
+    scope: 'openid offline_access vehicle_location vehicle_device_data',
     state: crypto.randomUUID()
   });
   res.writeHead(302, { Location: 'https://fleet-auth.prd.vn.cloud.tesla.com/oauth2/v3/authorize?' + params.toString() });
