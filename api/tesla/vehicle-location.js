@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   const vin = process.env.TESLA_VIN;
   if (!token || !vin) return res.status(503).json({ error: 'Tesla API is not configured' });
   try {
-    const url = 'https://fleet-api.prd.na.vn.cloud.tesla.com/api/1/vehicles/' + encodeURIComponent(vin) + '/vehicle_data';
+    const url = 'https://fleet-api.prd.na.vn.cloud.tesla.com/api/1/vehicles/' + encodeURIComponent(vin) + '/vehicle_data?endpoints=drive_state';
     const response = await fetch(url, { headers: { Authorization: 'Bearer ' + token, Accept: 'application/json' } });
     const body = await response.json().catch(() => ({}));
     if (!response.ok) return res.status(response.status).json({ error: 'Tesla API request failed', detail: body });
